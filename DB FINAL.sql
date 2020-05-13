@@ -163,3 +163,71 @@ VALUES
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 COMMIT;
 --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE MODULOS
+( 
+IdModulo number NOT NULL,
+Descripcion varchar2(100) NOT NULL, --1 todas, ofertas internas - sucursal, ofertas internas -autorizador para hacer visible
+CONSTRAINT pk_modulos PRIMARY KEY (IdModulo)
+);
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO MODULOS (IdModulo, Descripcion)
+VALUES (1, 'TESTING');
+
+INSERT INTO MODULOS (IdModulo, Descripcion)
+VALUES (2, 'SUCURSALES');
+
+INSERT INTO MODULOS (IdModulo, Descripcion)
+VALUES (3, 'PANEL DE CONTROL - GESTION DE USUARIOS');
+
+INSERT INTO MODULOS (IdModulo, Descripcion)
+VALUES (4, 'COMERCIAL - LOGUEARSE COMO SUCURSAL');
+
+INSERT INTO MODULOS (IdModulo, Descripcion)
+VALUES (5, 'COMERCIAL - AUTORIZAR OFERTAS INTERNAS');
+
+INSERT INTO MODULOS (IdModulo, Descripcion)
+VALUES (6, 'COMERCIAL - CARGAR PRECIOS OFERTAS INTERNAS');
+
+INSERT INTO MODULOS (IdModulo, Descripcion)
+VALUES (7, 'COMERCIAL - DEVOLUCIONES PROVEEDOR');
+
+INSERT INTO MODULOS (IdModulo, Descripcion)
+VALUES (8, 'COMERCIAL - CONTACTOS CROSSDOCKING');
+
+INSERT INTO MODULOS (IdModulo, Descripcion)
+VALUES (9, 'PERSONAL');
+
+INSERT INTO MODULOS (IdModulo, Descripcion)
+VALUES (10, 'SEGURIDAD');
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE SEQUENCE SEC_MODULOSXPERFIL
+MINVALUE 1
+INCREMENT BY 1
+NOCYCLE
+NOCACHE;
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE MODULOSXPERFIL
+( 
+IdModulosxPerfil number NOT NULL,
+IdPerfil number NOT NULL,
+IdModulo number NOT NULL,
+CreateSQL char NOT NULL, -- T/F PERMISO PARA CREAR - CREATE - INSERT
+ReadSQL char NOT NULL, --T/F PERMISO PARA LEER - READ - SELECT
+UpdateSQL char NOT NULL, --T/F PERMISO PARA ACTUALIZAR - UPDATE - UPDATE
+DeleteSQL char NOT NULL, --T/F PERMISO PARA ELIMINAR (DAR DE BAJA YA QUE NO COMBIENE BORRAR DATOS) - DELETE - DELETE -
+CONSTRAINT pk_modulosxperfil PRIMARY KEY (IdModulosxPerfil),
+CONSTRAINT fk_perfiles2 FOREIGN KEY (IdPerfil) REFERENCES PERFILES(IdPerfil),
+CONSTRAINT fk_modulos FOREIGN KEY (IdModulo) REFERENCES MODULOS(IdModulo)
+);
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO MODULOSXPERFIL(IdModulosxPerfil, IdPerfil, IdModulo, CreateSQL, ReadSQL, UpdateSQL, DeleteSQL)
+VALUES (SEC_MODULOSXPERFIL.NEXTVAL, 1, 1, 'T', 'F','F','T');
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+COMMIT;
