@@ -202,32 +202,29 @@ VALUES (9, 'PERSONAL');
 INSERT INTO MODULOS (IdModulo, Descripcion)
 VALUES (10, 'SEGURIDAD');
 
---------------------------------------------------------------------------------------------------------------------------------------------------------
-CREATE SEQUENCE SEC_MODULOSXPERFIL
-MINVALUE 1
-INCREMENT BY 1
-NOCYCLE
-NOCACHE;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE MODULOSXPERFIL
 ( 
-IdModulosxPerfil number NOT NULL,
 IdPerfil number NOT NULL,
 IdModulo number NOT NULL,
 CreateSQL char NOT NULL, -- T/F PERMISO PARA CREAR - CREATE - INSERT
 ReadSQL char NOT NULL, --T/F PERMISO PARA LEER - READ - SELECT
 UpdateSQL char NOT NULL, --T/F PERMISO PARA ACTUALIZAR - UPDATE - UPDATE
 DeleteSQL char NOT NULL, --T/F PERMISO PARA ELIMINAR (DAR DE BAJA YA QUE NO COMBIENE BORRAR DATOS) - DELETE - DELETE -
-CONSTRAINT pk_modulosxperfil PRIMARY KEY (IdModulosxPerfil),
+CONSTRAINT pk_modulosxperfil PRIMARY KEY (IdPerfil, IdModulo),
 CONSTRAINT fk_perfiles2 FOREIGN KEY (IdPerfil) REFERENCES PERFILES(IdPerfil),
 CONSTRAINT fk_modulos FOREIGN KEY (IdModulo) REFERENCES MODULOS(IdModulo)
 );
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
 INSERT INTO MODULOSXPERFIL(IdModulosxPerfil, IdPerfil, IdModulo, CreateSQL, ReadSQL, UpdateSQL, DeleteSQL)
 VALUES (SEC_MODULOSXPERFIL.NEXTVAL, 1, 1, 'T', 'F','F','T');
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 COMMIT;
+
+
+--https://www.tutorialesprogramacionya.com/oracleya/temarios/descripcion.php?inicio=25&cod=192&punto=34
