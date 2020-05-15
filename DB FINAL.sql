@@ -52,15 +52,14 @@ Dni varchar2(11) NOT NULL, -- unique si es persona nro de dni
 Apellidos varchar2(100) NOT NULL, 
 Nombres varchar2(100) NOT NULL, 
 IdGenero char NOT NULL, --F si es femenino M si es masculino
-TelefonoPersonal varchar2(30) NOT NULL, 
-EmailPersonal varchar2(100) NOT NULL, 
+TelefonoPersonal varchar2(30), 
+EmailPersonal varchar2(100), 
 Foto varchar2(255) NOT NULL, --se guarda la ubicacion de la foto, si no tiene poner no disponible
 IdClasificacionPersona number NOT NULL, 
 CONSTRAINT pk_personas PRIMARY KEY (IdPersona),
 CONSTRAINT fk_genero FOREIGN KEY (IdGenero) REFERENCES GENERO(IdGenero),
 CONSTRAINT fk_clasificacionPersona FOREIGN KEY (IdClasificacionPersona) REFERENCES CLASIFICACION_PERSONA(IdClasificacionPersona),
-CONSTRAINT unq_dni UNIQUE (Dni),
-CONSTRAINT unq_emailPersonal UNIQUE (EmailPersonal)
+CONSTRAINT unq_dni UNIQUE (Dni)
 );
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
