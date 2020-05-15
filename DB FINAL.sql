@@ -220,8 +220,18 @@ CONSTRAINT fk_modulos FOREIGN KEY (IdModulo) REFERENCES MODULOS(IdModulo)
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-INSERT INTO MODULOSXPERFIL(IdModulosxPerfil, IdPerfil, IdModulo, CreateSQL, ReadSQL, UpdateSQL, DeleteSQL)
-VALUES (SEC_MODULOSXPERFIL.NEXTVAL, 1, 1, 'T', 'F','F','T');
+INSERT INTO MODULOSXPERFIL(IdPerfil, IdModulo, CreateSQL, ReadSQL, UpdateSQL, DeleteSQL)
+VALUES (1, 3, 'F', 'F','F','T');
+
+INSERT INTO MODULOSXPERFIL(IdPerfil, IdModulo, CreateSQL, ReadSQL, UpdateSQL, DeleteSQL)
+VALUES (1, 5, 'F', 'T','T','T');
+
+INSERT INTO MODULOSXPERFIL(IdPerfil, IdModulo, CreateSQL, ReadSQL, UpdateSQL, DeleteSQL)
+VALUES (2, 7, 'T', 'F','F','T');
+
+INSERT INTO MODULOSXPERFIL(IdPerfil, IdModulo, CreateSQL, ReadSQL, UpdateSQL, DeleteSQL)
+VALUES (2, 8, 'T', 'T','F','T');
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 COMMIT;
